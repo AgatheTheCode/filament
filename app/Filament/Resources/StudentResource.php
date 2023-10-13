@@ -5,7 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Models\Student;
+use App\Models\Study;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -35,6 +37,13 @@ class StudentResource extends Resource
                 TextInput::make('email')
                     ->email()
                     ->placeholder('Enter email'),
+                Select::make('study_id')
+                    ->options(
+                        Study::all()->pluck('label', 'id')
+                    )
+                    ->searchable()
+                    ->required()
+                    ->placeholder('Select study'),
             ]);
     }
 
@@ -49,6 +58,9 @@ class StudentResource extends Resource
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('study.label')
                     ->searchable()
                     ->sortable(),
             ])
