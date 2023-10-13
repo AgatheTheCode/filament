@@ -6,4 +6,9 @@ class Student extends Model
 {
     use HasFactory;
     protected $fillable = ['last_name', 'first_name', 'email'];
+
+    public function study(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Study::class);
+    }
 }
