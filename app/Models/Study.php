@@ -12,4 +12,9 @@ class Study extends Model
     protected $fillable = [
         'label',
     ];
+
+    public function students(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Student::class);
+    }
 }
