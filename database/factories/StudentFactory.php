@@ -20,6 +20,7 @@ class StudentFactory extends Factory
             'last_name' => fake()->lastName,
             'first_name' => fake()->firstName,
             'email' => fake()->safeEmail,
+            'study_id' => StudyFactory::new()->create()->id,
         ];
     }
 }
